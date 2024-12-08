@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class 
+PageController extends Controller
 {
     public function home()
     {
@@ -30,7 +31,7 @@ class PageController extends Controller
     {
         $age = 33;
         $data = ['name' => 'Salvador', 'age' => $age];
-        return view('test', $data);
+        return view('test', compact('data'));
     }
 
     public function contact()

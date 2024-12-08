@@ -7,7 +7,7 @@
     <title>Test</title>
     <h1>Hello World</h1>
 
-    {{$name}}
+    {{$data['name']}}
 </head>
 <body>
     
