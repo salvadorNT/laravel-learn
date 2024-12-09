@@ -35,17 +35,9 @@ class PostController extends Controller
                 'posted' => 'no',
                 'category_id' => 1
             ]
-            );
-        return 'Index';
+        );
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return redirect()->route('post.index');
     }
 
     /**
