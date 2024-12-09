@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('contact', 'contact')->name('contact');
     
     Route::resource('user', PageController::class);
+    
+    Route::resource('post', PostController::class);
 
 
 
