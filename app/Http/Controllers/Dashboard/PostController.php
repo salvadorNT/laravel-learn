@@ -35,7 +35,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:5|max:500',
+            'slug' => 'required|min:5|max:500',
+            'content' => 'required|min:7',
+            'category_is' => 'required|integer',
+            'posted' => 'required',
+        ]);
+
+        Post::create($request->all());
+        // Post::create(
+        //     [
+        //         'title' => 'test title',
+        //         'slug' => 'test slug',
+        //         'description' => 'test description',
+        //         'content' => 'test content',
+        //         'image' => 'test image',
+        //         'posted' => 'no',
+        //         'category_id' => 1
+        //     ]
+        // );
+
+        return redirect()->route('post.index');
     }
 
     /**
