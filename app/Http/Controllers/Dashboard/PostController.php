@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -25,19 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        Post::create(
-            [
-                'title' => 'test title',
-                'slug' => 'test slug',
-                'description' => 'test description',
-                'content' => 'test content',
-                'image' => 'test image',
-                'posted' => 'no',
-                'category_id' => 1
-            ]
-        );
-
-        return redirect()->route('post.index');
+        $categories = Category::all(['id', 'title']);
+        return view('dashboard.post.create', compact('categories'));
     }
 
     /**
