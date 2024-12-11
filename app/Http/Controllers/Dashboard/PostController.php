@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StorePostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -33,17 +35,39 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:5|max:500',
-            'slug' => 'required|min:5|max:500',
-            'content' => 'required|min:7',
-            'category_is' => 'required|integer',
-            'posted' => 'required',
-        ]);
+        
+        // Post::create($request->all());
+        Post::create($request->validated());
+        return to_route('post.index');
 
-        Post::create($request->all());
+        // Forma 1 de validar
+
+        // $validated = Validator::make($request->all(), [
+        //     'title' => 'required|min:5|max:500',
+        //     'slug' => 'required|min:5|max:500',
+        //     'content' => 'required|min:7',
+        //     'category_id' => 'required|integer',
+        //     'description' => 'required|min:7',
+        //     'posted' => 'required',
+        // ]);
+
+
+        // Forma 2 de validar
+
+        // $request->validate([
+        //     'title' => 'required|min:5|max:500',
+        //     'slug' => 'required|min:5|max:500',
+        //     'content' => 'required|min:7',
+        //     'category_id' => 'required|integer',
+        //     'posted' => 'required',
+        // ]);
+
+
+        
+        // Metodo create campo a campó
+
         // Post::create(
         //     [
         //         'title' => 'test title',
@@ -56,7 +80,6 @@ class PostController extends Controller
         //     ]
         // );
 
-        return redirect()->route('post.index');
     }
 
     /**

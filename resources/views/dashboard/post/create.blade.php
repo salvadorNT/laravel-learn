@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
+
+    @include('dashboard.fragment.error-form')
     <form action="{{ route('post.store') }}" method="post">
         
         @csrf
 
         <label for="title">Title</label>
-        <input type="text" name="title" id="" required>
+        <input type="text" name="title" id="">
 
         <label for="slug">Slug</label>
         <input type="text" name="slug" id="">
