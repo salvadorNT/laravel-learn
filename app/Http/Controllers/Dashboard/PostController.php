@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\StorePostRequestPatch;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -84,23 +85,24 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::all(['id', 'title']);
+        return view('dashboard.post.edit', compact('categories', 'post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequestPatch $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        return to_route('post.index');
     }
 
     /**
