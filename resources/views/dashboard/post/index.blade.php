@@ -6,15 +6,17 @@
     </a>
 
     <table>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Posted</th>
-        <th>Options</th>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Posted</th>
+            <th>Options</th>
+        </tr>
         @foreach ($posts as $post)
             <tr>
                 <td>{{ $post->id }}</td>
-                <td>{{ $post->description }}</td>
+                <td>{{ $post->title }}</td>
                 <td>{{ $post->category->title }}</td>
                 <td>{{ $post->posted }}</td>
                 <td>
