@@ -21,15 +21,15 @@
     @endforeach
 </select>
 
-<label for="image">Image</label>
-<input type="textarea" name="image" value="{{ old('image', $post->image) }}" id="">
-
 <label for="posted">Posted</label>
 <select name="posted" id="">
     <option value="yes" {{ old('posted', $post->posted) == 'yes' ? 'selected' : '' }}>Yes</option>
     <option value="no" {{ old('posted', $post->posted) == 'no' ? 'selected' : '' }}>No</option>
 </select>
 
-
+@if (isset($task) && $task == 'edit')
+    <label for="image">Image</label>
+    <input type="file" name="image">
+@endif
 
 <button type="submit">Guardar</button>
